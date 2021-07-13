@@ -1,4 +1,5 @@
-require 'pry'
+require "pry"
+
 class Song
   attr_accessor :name
   @@all = []
@@ -22,11 +23,19 @@ class Song
 
   def self.new_by_filename(string)
     split = string.split(" - ")
-    tmp = Song.new(split[1])
-    @artist = split[0]
-    tmp
+    song_instance = Song.new(split[1])
+    artist_name = split[0]
+    
+    # song_instance.artist = artist_name
+    song_instance
+  end
 
+  def artist_name=(name)
+    artist_instance = Artist.find_or_create_by_name(name)
+    artist_instance.add_song(self)
+    @artist = artist_instance
+    binding.pry
     
-    
+
   end
 end

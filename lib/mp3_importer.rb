@@ -9,9 +9,9 @@ class MP3Importer
     Dir.children(@path)
   end
 
-  def import(song_array)
-    song_array.each do |song_name|
-      song_name #Song.new.etc
+  def import
+    Dir.children(@path).each do |file_name|
+      Song.new_by_filename(file_name)
     end
   end
 end
